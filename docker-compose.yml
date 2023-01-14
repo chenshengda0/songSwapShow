@@ -1,0 +1,108 @@
+version: '3'
+
+networks:
+  dex-song-swap-show:
+    driver:
+      bridge
+
+services:
+
+  dev-mysql:
+    hostname: dex-mysql
+    restart: always
+    build:
+      context: ./
+      dockerfile: mysql/Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=231510622abc
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    volumes:
+      - ./mysql/datadir:/var/lib/mysql
+    ports:
+      - 3306:3306
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - dex-song-swap-show
+
+  dev-money:
+    hostname: dex-money
+    restart: always
+    build:
+      context: ./
+      dockerfile: money/Dockerfile
+    ports:
+      - 8540:8545
+      - 8546:8546
+    volumes:
+      - ./money/ethereum:/ethereum
+      - ./testLog:/opt/testLog
+    command:
+      - --dev
+      - --dev.period=1
+      - --networkid=1337
+      - --http.corsdomain=* 
+      - --datadir=/ethereum
+      - --http 
+      - --http.addr=0.0.0.0 
+      - --http.port=8545
+      - --http.api=admin,debug,web3,eth,txpool,net,personal
+      #- --allow-insecure-unlock
+      #- --mine
+      - --ws
+      - --ws.addr=0.0.0.0
+      - --ws.port=8546
+      - --ws.api=eth,net,web3
+      - --port=30303
+    networks:
+      - dex-song-swap-show
+
+  dev-phpmyadmin:
+    hostname: dex-phpmyadmin
+    restart: always
+    image: phpmyadmin
+    ports:
+      - 8888:80
+    environment:
+      - PMA_ARBITRARY=1
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - dex-song-swap-show
+
+
+  dev-haproxy:
+    hostname: dex-haproxy
+    restart: always
+    build:
+      context: ./
+      dockerfile: haproxy/Dockerfile
+    environment:
+      - RABBITMQ_DEFAULT_USER=dream 
+      - RABBITMQ_DEFAULT_PASS=231510622abc
+      - PATH=$PATH:/opt/rabbitmq/sbin:/usr/local/bin/:/bin
+    ports:
+      - 5670:5670
+      - 35672:35672
+      - 35674:35674
+      - 9999:9999
+      - 9527:9527
+      - 27149:27149
+    volumes:
+      - ./testLog:/opt/testLog
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - dex-song-swap-show
+
+  # dev-node:
+  #   hostname: dex-node
+  #   build:
+  #     context: ./
+  #     dockerfile: dex-show/Dockerfile
+  #   # volumes:
+  #   #   - ./mnt:/mnt
+  #   extra_hosts:
+  #     - host.docker.internal:host-gateway
+  #   networks:
+  #     - dex-song-swap-show
