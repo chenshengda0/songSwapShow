@@ -27,10 +27,11 @@ services:
 
   dev-money:
     hostname: dex-money
-    restart: always
-    build:
-      context: ./
-      dockerfile: money/Dockerfile
+    #restart: always
+    # build:
+    #   context: ./
+    #   dockerfile: money/Dockerfile
+    image: ethereum/client-go:v1.10.26
     ports:
       - 8540:8545
       - 8546:8546
@@ -39,7 +40,9 @@ services:
       - ./testLog:/opt/testLog
     command:
       - --dev
-      - --dev.period=1
+      - --dev.period=0
+      - --dev.gaslimit=0xffffffff
+      #- --mine
       - --networkid=1337
       - --http.corsdomain=* 
       - --datadir=/ethereum
@@ -47,8 +50,6 @@ services:
       - --http.addr=0.0.0.0 
       - --http.port=8545
       - --http.api=admin,debug,web3,eth,txpool,net,personal
-      #- --allow-insecure-unlock
-      #- --mine
       - --ws
       - --ws.addr=0.0.0.0
       - --ws.port=8546
