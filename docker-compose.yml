@@ -92,7 +92,7 @@ services:
       - 35672:35672
       - 35674:35674
       - 9999:9999
-      - 9527:9527
+      #- 9527:9527
       - 27149:27149
     volumes:
       - ./testLog:/opt/testLog
@@ -108,6 +108,22 @@ services:
       dockerfile: dex-show/Dockerfile
     ports:
       - 9528:9528
+    volumes:
+      - ./build:/opt/build
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - dev-money
+    networks:
+      - dex-song-swap-show
+
+  dev-api:
+    hostname: dex-api
+    build:
+      context: ./
+      dockerfile: dex-show/Dockerfile
+    ports:
+      - 9529:9529
     volumes:
       - ./build:/opt/build
     extra_hosts:
