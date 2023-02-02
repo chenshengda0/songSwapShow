@@ -121,7 +121,7 @@ services:
     hostname: dex-api
     build:
       context: ./
-      dockerfile: dex-show/Dockerfile
+      dockerfile: dex-api/Dockerfile
     ports:
       - 9529:9529
     volumes:
