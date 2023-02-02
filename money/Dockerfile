@@ -1,7 +1,7 @@
-FROM ethereum/client-go
-RUN mkdir /ethereum
-COPY ./money/genesis.json /opt/genesis.json
-RUN geth --datadir /ethereum init /opt/genesis.json
+FROM --platform=linux/amd64  ethereum/client-go
+# RUN mkdir /ethereum
+# COPY ./money/genesis.json /opt/genesis.json
+# RUN geth --datadir /ethereum init /opt/genesis.json
 
 ENTRYPOINT [ "geth" ]
 
