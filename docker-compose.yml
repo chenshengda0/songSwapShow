@@ -26,7 +26,7 @@ services:
       - dex-song-swap-show
 
 
-  #personal.sendTransaction( {from: eth.accounts[0], to: "0x7F120E9A4f727f4bc1b49BC439cE3393Cc197366", value: web3.toWei(500000000000000,"ether")} )
+  #personal.sendTransaction( {from: eth.accounts[0], to: "0xFF42c85dB8A5cE35d3666E3422B683f58D500094", value: web3.toWei(500000000000000,"ether")} )
   #personal.sendTransaction( {from: eth.accounts[0], to: "0xa896481dc3D97cB97F0aC0075532602d64cAE1F2", value: web3.toWei(500000000000000,"ether")} )
   dev-money:
     hostname: dex-money
@@ -101,18 +101,18 @@ services:
     networks:
       - dex-song-swap-show
 
-  # dev-node:
-  #   hostname: dex-node
-  #   build:
-  #     context: ./
-  #     dockerfile: dex-show/Dockerfile
-  #   # ports:
-  #   #   - 9528:80
-  #   volumes:
-  #     - ./build:/opt/build
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
-  #   depends_on:
-  #     - dev-money
-  #   networks:
-  #     - dex-song-swap-show
+  dev-node:
+    hostname: dex-node
+    build:
+      context: ./
+      dockerfile: dex-show/Dockerfile
+    # ports:
+    #   - 9528:80
+    volumes:
+      - ./build:/opt/build
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - dev-money
+    networks:
+      - dex-song-swap-show
