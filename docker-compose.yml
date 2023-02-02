@@ -106,8 +106,8 @@ services:
     build:
       context: ./
       dockerfile: dex-show/Dockerfile
-    # ports:
-    #   - 9528:80
+    ports:
+      - 9528:9528
     volumes:
       - ./build:/opt/build
     extra_hosts:
