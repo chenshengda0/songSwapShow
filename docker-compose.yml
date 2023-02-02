@@ -35,7 +35,7 @@ services:
     # build:
     #   context: ./
     #   dockerfile: money/Dockerfile
-    platform: linux/amd64
+    #platform: linux/amd64
     image: ethereum/client-go:v1.10.26
     ports:
       - 8540:8545
