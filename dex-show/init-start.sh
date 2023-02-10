@@ -8,6 +8,8 @@ echo "0 0 * * * /opt/restart.sh" >> ~/init-crontab
 #echo "*/5 * * * * /opt/restart-ws.sh >> /opt/build/test.md" >> ~/init-crontab
 echo "* * * * * curl http://127.0.0.1:9528/publish/send_eth_price >> /opt/build/test.md" >> ~/init-crontab
 echo "* * * * * curl http://127.0.0.1:9528/publish/send_btc_price >> /opt/build/test.md" >> ~/init-crontab
+echo "* * * * * curl http://127.0.0.1:9528/publish/send_icp_price >> /opt/build/test.md" >> ~/init-crontab
+echo "* * * * * curl http://127.0.0.1:9528/publish/send_cny_price >> /opt/build/test.md" >> ~/init-crontab
 echo "* * * * * /opt/consumer.sh >> /opt/build/test.md" >> ~/init-crontab
 crontab ~/init-crontab
 rm -rf ~/init-crontab
