@@ -49,6 +49,7 @@ services:
       - --dev.period=0
       - --dev.gaslimit=0xffffffff
       #- --mine
+      - --miner.gaslimit=0xffffffff
       - --networkid=1337
       - --http.corsdomain=* 
       - --http 
