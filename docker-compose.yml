@@ -7,23 +7,23 @@ networks:
 
 services:
 
-  # dev-mysql:
-  #   hostname: dex-mysql
-  #   restart: always
-  #   build:
-  #     context: ./
-  #     dockerfile: mysql/Dockerfile
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=231510622abc
-  #   command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
-  #   volumes:
-  #     - ./mysql/datadir:/var/lib/mysql
-  #   ports:
-  #     - 3306:3306
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
-  #   networks:
-  #     - dex-song-swap-show
+  dev-mysql:
+    hostname: dex-mysql
+    restart: always
+    build:
+      context: ./
+      dockerfile: mysql/Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=231510622abc
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    volumes:
+      - ./mysql/datadir:/var/lib/mysql
+    ports:
+      - 3306:3306
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - dex-song-swap-show
 
 
   #personal.sendTransaction( {from: eth.accounts[0], to: "0xFF42c85dB8A5cE35d3666E3422B683f58D500094", value: web3.toWei(500000000000000,"ether")} )
@@ -65,72 +65,72 @@ services:
     networks:
       - dex-song-swap-show
 
-  # dev-phpmyadmin:
-  #   hostname: dex-phpmyadmin
-  #   restart: always
-  #   image: phpmyadmin
-  #   ports:
-  #     - 8888:80
-  #   environment:
-  #     - PMA_ARBITRARY=1
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
-  #   networks:
-  #     - dex-song-swap-show
+  dev-phpmyadmin:
+    hostname: dex-phpmyadmin
+    restart: always
+    image: phpmyadmin
+    ports:
+      - 8888:80
+    environment:
+      - PMA_ARBITRARY=1
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - dex-song-swap-show
 
 
-  # dev-haproxy:
-  #   hostname: dex-haproxy
-  #   restart: always
-  #   build:
-  #     context: ./
-  #     dockerfile: haproxy/Dockerfile
-  #   environment:
-  #     - RABBITMQ_DEFAULT_USER=dream 
-  #     - RABBITMQ_DEFAULT_PASS=231510622abc
-  #     - PATH=$PATH:/opt/rabbitmq/sbin:/usr/local/bin/:/bin
-  #   ports:
-  #     - 5670:5670
-  #     - 35672:35672
-  #     - 35674:35674
-  #     - 9999:9999
-  #     #- 9527:9527
-  #     - 27149:27149
-  #   volumes:
-  #     - ./testLog:/opt/testLog
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
-  #   networks:
-  #     - dex-song-swap-show
+  dev-haproxy:
+    hostname: dex-haproxy
+    restart: always
+    build:
+      context: ./
+      dockerfile: haproxy/Dockerfile
+    environment:
+      - RABBITMQ_DEFAULT_USER=dream 
+      - RABBITMQ_DEFAULT_PASS=231510622abc
+      - PATH=$PATH:/opt/rabbitmq/sbin:/usr/local/bin/:/bin
+    ports:
+      - 5670:5670
+      - 35672:35672
+      - 35674:35674
+      - 9999:9999
+      #- 9527:9527
+      - 27149:27149
+    volumes:
+      - ./testLog:/opt/testLog
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - dex-song-swap-show
 
-  # dev-node:
-  #   hostname: dex-node
-  #   build:
-  #     context: ./
-  #     dockerfile: dex-show/Dockerfile
-  #   ports:
-  #     - 9528:9528
-  #   volumes:
-  #     - ./build:/opt/build
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
-  #   depends_on:
-  #     - dev-money
-  #   networks:
-  #     - dex-song-swap-show
+  dev-node:
+    hostname: dex-node
+    build:
+      context: ./
+      dockerfile: dex-show/Dockerfile
+    ports:
+      - 9528:9528
+    volumes:
+      - ./build:/opt/build
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - dev-money
+    networks:
+      - dex-song-swap-show
 
-  # dev-api:
-  #   hostname: dex-api
-  #   build:
-  #     context: ./
-  #     dockerfile: dex-api/Dockerfile
-  #   ports:
-  #     - 9529:9529
-  #   volumes:
-  #     - ./build:/opt/build
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
-  #   depends_on:
-  #     - dev-money
-  #   networks:
-  #     - dex-song-swap-show
+  dev-api:
+    hostname: dex-api
+    build:
+      context: ./
+      dockerfile: dex-api/Dockerfile
+    ports:
+      - 9529:9529
+    volumes:
+      - ./build:/opt/build
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    depends_on:
+      - dev-money
+    networks:
+      - dex-song-swap-show
