@@ -126,6 +126,7 @@ services:
       dockerfile: dex-api/Dockerfile
     ports:
       - 9529:9529
+      - 25:25
     volumes:
       - ./build:/opt/build
     extra_hosts:
