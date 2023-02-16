@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkclient=self.webpackChunkclient||[]).push([[84573],{84573:function(e,t,u){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var c=(0,u(47313).createContext)({});t.default=c}}]);
