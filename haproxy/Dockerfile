@@ -14,6 +14,7 @@ RUN chmod -R 777 /opt/init-start.sh
 RUN chmod -R 777 /opt/one_consumer.sh
 EXPOSE 5670
 EXPOSE 15670
+EXPOSE 15674
 EXPOSE 35672
 EXPOSE 35674
 EXPOSE 9999

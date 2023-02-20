@@ -17,7 +17,7 @@ listen rabbitmq_cluster
 
 listen rabbitmq_stomp
     bind 0.0.0.0:35674
-    mode tcp
+    mode http
     timeout client 3h
     timeout server 3h
     timeout connect 3h

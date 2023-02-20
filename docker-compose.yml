@@ -91,6 +91,7 @@ services:
       - PATH=$PATH:/opt/rabbitmq/sbin:/usr/local/bin/:/bin
     ports:
       - 15670:15670
+      - 15674:15674
       - 5670:5670
       - 35672:35672
       - 35674:35674
