@@ -90,8 +90,9 @@ services:
       - ./testLog:/opt/testLog
     extra_hosts:
       - host.docker.internal:host-gateway
-    networks:
-      - dex-song-swap-show
+    network_mode: "host"
+    # networks:
+    #   - dex-song-swap-show
 
   dev-node:
     hostname: dex-node
