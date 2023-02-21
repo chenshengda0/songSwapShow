@@ -16,9 +16,11 @@ rabbitmq-server -detached
 
 echo 1
 rabbitmq-plugins --offline enable rabbitmq_web_stomp
+#rabbitmq-plugins --offline enable rabbitmq_mqtt rabbitmq_web_mqtt
 
 echo 2
-rabbitmq-plugins --offline enable rabbitmq_web_stomp_examples
+#rabbitmq-plugins --offline enable rabbitmq_web_stomp_examples
+#rabbitmq-plugins --offline enable rabbitmq_web_mqtt_examples
 
 rabbitmqctl stop_app
 
@@ -31,9 +33,9 @@ screen -dmS haproxyServer
 screen -x -S haproxyServer -p 0 -X stuff $'haproxy -f /opt/haproxy.cnf'
 screen -x -S haproxyServer -p 0 -X stuff $'\n'
 
-echo "* * * * * /opt/one_consumer.sh" >> ~/init-crontab
-crontab ~/init-crontab
-rm -rf ~/init-crontab
-service cron restart
+# echo "* * * * * /opt/one_consumer.sh" >> ~/init-crontab
+# crontab ~/init-crontab
+# rm -rf ~/init-crontab
+# service cron restart
 
 echo "init-start end"

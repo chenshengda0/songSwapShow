@@ -17,7 +17,9 @@ listen rabbitmq_cluster
 
 listen rabbitmq_stomp
     bind 0.0.0.0:35674
-    mode http
+    mode tcp
+    #http-response set-header Access-Control-Allow-Origin "http://localhost:35674"
+    #http-response set-header Access-Control-Allow-Credentials "true"
     timeout client 3h
     timeout server 3h
     timeout connect 3h
