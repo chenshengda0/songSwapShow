@@ -29,9 +29,9 @@ rabbitmqctl start_app
 
 
 #执行screen
-screen -dmS haproxyServer
-screen -x -S haproxyServer -p 0 -X stuff $'haproxy -f /opt/haproxy.cnf'
-screen -x -S haproxyServer -p 0 -X stuff $'\n'
+# screen -dmS haproxyServer
+# screen -x -S haproxyServer -p 0 -X stuff $'haproxy -f /opt/haproxy.cnf'
+# screen -x -S haproxyServer -p 0 -X stuff $'\n'
 
 # echo "* * * * * /opt/one_consumer.sh" >> ~/init-crontab
 # crontab ~/init-crontab

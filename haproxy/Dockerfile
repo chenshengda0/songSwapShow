@@ -8,18 +8,11 @@ COPY ./haproxy/haproxy.cnf /opt/haproxy.cnf
 COPY ./haproxy/one_consumer.sh /opt/one_consumer.sh
 #RUN chmod -R 400 /root/.erlang.cookie
 RUN sed -i -e "s/\r//" /opt/init-start.sh
-RUN sed -i -e "s/\r//" /opt/haproxy.cnf
+#RUN sed -i -e "s/\r//" /opt/haproxy.cnf
 RUN sed -i -e "s/\r//" /opt/one_consumer.sh
-RUN rabbitmq-plugins --offline enable rabbitmq_web_stomp
-RUN sed -i '$a management.cors.allow_origins.1 = *' /etc/rabbitmq/conf.d/10-defaults.conf
 RUN chmod -R 777 /opt/init-start.sh
 RUN chmod -R 777 /opt/one_consumer.sh
-EXPOSE 5670
-EXPOSE 15670
+EXPOSE 5672
+EXPOSE 15672
 EXPOSE 15674
-EXPOSE 35672
-EXPOSE 35674
-EXPOSE 9999
-EXPOSE 9527
-EXPOSE 27149
 CMD date >> /opt/testLog/dex-haproxy.md && /opt/init-start.sh >> /opt/testLog/dex-haproxy.md 2>&1 && while true; do sleep 3000;done
