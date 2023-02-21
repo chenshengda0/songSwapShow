@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.4cfab700.css",
-    "main.js": "./static/js/main.35795d68.js",
+    "main.js": "./static/js/main.c5312a4a.js",
     "static/media/shareBg.jpeg": "./static/media/shareBg.d3237506e5b74faced46.jpeg",
     "static/media/top.png": "./static/media/top.2ae776a91bf05723f448.png",
     "static/media/zfbpay.jpeg": "./static/media/zfbpay.9ce8815a8ba39a9f25ba.jpeg",
@@ -18,6 +18,6 @@
   },
   "entrypoints": [
     "static/css/main.4cfab700.css",
-    "static/js/main.35795d68.js"
+    "static/js/main.c5312a4a.js"
   ]
 }
