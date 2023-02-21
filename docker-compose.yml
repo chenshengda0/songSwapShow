@@ -72,25 +72,25 @@ services:
       - dex-song-swap-show
 
 
-  dev-haproxy:
-    hostname: dex-haproxy
-    restart: always
-    build:
-      context: ./
-      dockerfile: haproxy/Dockerfile
-    environment:
-      - RABBITMQ_DEFAULT_USER=dream 
-      - RABBITMQ_DEFAULT_PASS=231510622abc
-      - PATH=$PATH:/opt/rabbitmq/sbin:/usr/local/bin/:/bin
-    ports:
-      - 15672:15672
-      - 15674:15674
-      - 5672:5672
-    volumes:
-      - ./testLog:/opt/testLog
-    extra_hosts:
-      - host.docker.internal:host-gateway
-    network_mode: "host"
+  # dev-haproxy:
+  #   hostname: dex-haproxy
+  #   restart: always
+  #   build:
+  #     context: ./
+  #     dockerfile: haproxy/Dockerfile
+  #   environment:
+  #     - RABBITMQ_DEFAULT_USER=dream 
+  #     - RABBITMQ_DEFAULT_PASS=231510622abc
+  #     - PATH=$PATH:/opt/rabbitmq/sbin:/usr/local/bin/:/bin
+  #   ports:
+  #     - 15672:15672
+  #     - 15674:15674
+  #     - 5672:5672
+  #   volumes:
+  #     - ./testLog:/opt/testLog
+  #   extra_hosts:
+  #     - host.docker.internal:host-gateway
+  #   network_mode: "host"
     # networks:
     #   - dex-song-swap-show
 
